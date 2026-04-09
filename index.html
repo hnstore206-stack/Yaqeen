@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>يقين - Yaqen</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header / Nav -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo animate-fade-in">
+                يقين
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="main-nav" id="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#prayer-times-section" data-lang="nav-prayers">مواقيت الصلاة</a></li>
+                    <li><a href="#download" data-lang="nav-download">تحميل التطبيق</a></li>
+                </ul>
+            </nav>
+
+            <div class="lang-switch" id="lang-switch-container">
+                <button id="lang-btn" class="lang-btn">
+                    <span id="lang-text">العربية</span>
+                    <img src="https://flagcdn.com/w40/sa.png" alt="العربية" id="lang-icon">
+                </button>
+
+                <!-- Language Dropdown -->
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <div class="lang-dropdown-header" id="lang-dropdown-title">اختر اللغة</div>
+                    <div class="lang-dropdown-options">
+                        <button class="lang-option-btn active" data-lang-val="ar">
+                            <span class="lang-name">العربية</span>
+                            <div class="lang-icon-wrapper">
+                                <img src="https://flagcdn.com/w40/sa.png" alt="Arabic" class="lang-flag">
+                            </div>
+                            <i class="fa-solid fa-circle-check check-icon"></i>
+                        </button>
+                        <button class="lang-option-btn" data-lang-val="en">
+                            <span class="lang-name lang-en-text">English</span>
+                            <div class="lang-icon-wrapper">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English" class="lang-flag">
+                            </div>
+                            <i class="fa-solid fa-circle-check check-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="elegant-star orn-tr"></div>
+        <div class="elegant-star orn-bl"></div>
+        <!-- Ramadan Global Ornaments -->
+        <svg class="ornament orn-ramadan-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Crescent Moon -->
+            <path d="M 50 10 A 40 40 0 1 0 90 50 A 30 30 0 1 1 50 10 Z" fill="none" stroke="var(--gold)"
+                stroke-width="2" opacity="0.2" />
+            <!-- Small Star -->
+            <polygon points="70,15 73,22 80,22 75,27 77,34 70,30 63,34 65,27 60,22 67,22" fill="none"
+                stroke="var(--gold)" stroke-width="1.5" opacity="0.2" />
+        </svg>
+
+        <svg class="ornament orn-ramadan-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Lantern -->
+            <path d="M40 20 L60 20 L65 40 L35 40 Z" fill="none" stroke="var(--primary)" stroke-width="1.5"
+                opacity="0.2" />
+            <rect x="35" y="42" width="30" height="30" rx="5" fill="none" stroke="var(--primary)" stroke-width="1.5"
+                opacity="0.2" />
+            <path d="M30 74 L70 74 L65 85 L35 85 Z" fill="none" stroke="var(--primary)" stroke-width="1.5"
+                opacity="0.2" />
+            <line x1="50" y1="5" x2="50" y2="20" stroke="var(--primary)" stroke-width="1.5" opacity="0.2" />
+            <circle cx="50" cy="5" r="3" fill="none" stroke="var(--primary)" stroke-width="1.5" opacity="0.2" />
+        </svg>
+
+        <!-- Background Pattern -->
+        <div class="islamic-pattern-bg"></div>
+        <div class="container hero-container"
+            style="display: flex; align-items: center; justify-content: space-between; gap: 50px; position: relative; z-index: 10;">
+            <div class="hero-text" style="flex: 1; text-align: right;">
+                <h1 id="hero-title" class="animate-up"
+                    style="font-size: 3.5rem; font-weight: 800; line-height: 1.4; margin-bottom: 20px;">يقين – رفيقك
+                    اليومي للطمأنينة والعبادة</h1>
+                <p id="hero-desc" class="animate-up delay-1"
+                    style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">تطبيق إسلامي شامل يساعدك على المحافظة
+                    على صلاتك، أذكارك،
+                    وارتباطك بالله في كل وقت.</p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary" id="btn-download"
+                        style="font-size: 1.2rem; padding: 15px 40px; border-radius: 50px;">تحميل التطبيق</a>
+                </div>
+            </div>
+            <div class="hero-mockup animate-up delay-3" style="flex: 1; display: flex; justify-content: flex-end;">
+                <div class="iphone-mockup">
+                    <div class="iphone-screen">
+                        <img src="assets/iph.png" alt="Yaqen App Screenshot" class="app-screenshot">
+                    </div>
+                    <div class="iphone-glare"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Prayer Times Section -->
+    <section class="prayer-times" id="prayer-times-section">
+        <div class="container">
+            <div class="prayer-container">
+
+                <!-- Prayer Illustration -->
+                <div class="prayer-illustration-top animate-up">
+                    <img src="prayer-illustration.png" alt="Prayer Illustration" class="prayer-top-img">
+                </div>
+
+                <!-- Top Filters Row -->
+                <div class="prayer-filters-row">
+                    <div class="filter-box date-box">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <span id="current-date-hijri">الجمعة، ٣ رمضان ١٤٤٧ - ٢٠ فبراير ٢٠٢٦</span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+
+                    <div class="filter-box method-box">
+                        <span class="filter-label">طريقة الحساب:</span>
+                        <select id="calc-method">
+                            <option value="1">مكة المكرمة</option>
+                            <option value="2">الهيئة العامة للمساحة</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-box location-box">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="custom-select-wrapper" id="custom-location-wrapper">
+                            <div class="custom-select-trigger" id="location-trigger">
+                                <span id="location-selected-text">مكة المكرمة، السعودية</span>
+                            </div>
+                            <div class="custom-options" id="location-options">
+                                <span class="custom-option selected" data-value="sa">مكة المكرمة، السعودية</span>
+                                <span class="custom-option" data-value="eg">القاهرة، مصر</span>
+                                <span class="custom-option" data-value="ae">دبي، الإمارات</span>
+                                <span class="custom-option" data-value="uk">لندن، بريطانيا</span>
+                            </div>
+                        </div>
+                        <select id="country-select" style="display: none;">
+                            <option value="sa" selected>مكة المكرمة، السعودية</option>
+                            <option value="eg">القاهرة، مصر</option>
+                            <option value="ae">دبي، الإمارات</option>
+                            <option value="uk">لندن، بريطانيا</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down ms-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Prayer Cards Row -->
+                <div class="prayer-cards-wrapper">
+                    <div class="prayer-cards" id="prayer-cards-container">
+                        <!-- Dynamic Prayer Cards injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Live Prayer Countdown -->
+                <div class="prayer-countdown-container">
+                    <h3 id="countdown-title" data-lang="countdown-title">الوقت المتبقي حتى الصلاة القادمة</h3>
+                    <div class="countdown-timer" id="countdown-timer" dir="ltr">
+                        <div class="time-box">
+                            <span id="hours-val">00</span>
+                            <span class="time-label" data-lang="time-h">ساعة</span>
+                        </div>
+                        <span class="time-colon">:</span>
+                        <div class="time-box">
+                            <span id="mins-val">00</span>
+                            <span class="time-label" data-lang="time-m">دقيقة</span>
+                        </div>
+                        <span class="time-colon">:</span>
+                        <div class="time-box">
+                            <span id="secs-val">00</span>
+                            <span class="time-label" data-lang="time-s">ثانية</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <div class="container text-center">
+            <h2 class="section-title" id="download-title">حمل تطبيق يقين الآن</h2>
+            <p id="download-desc">ابدأ رحلتك الإيمانية اليوم بخطوة واحدة</p>
+            <div class="download-buttons">
+                <a href="Yaqeen_0.1.0_x64_en-US.msi" download class="store-btn windows" id="btn-windows" style="background: linear-gradient(135deg, #0078D7, #005A9E); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 20px rgba(0, 120, 215, 0.4);">
+                    <i class="fa-brands fa-windows" style="color: white;"></i>
+                    <div class="store-text">
+                        <span data-lang="windows-sub" style="color: rgba(255,255,255,0.8);">تحميل لنظام</span>
+                        <strong data-lang="windows-main" style="color: white;">ويندوز</strong>
+                    </div>
+                </a>
+                <a href="#" class="store-btn google-play" style="opacity: 0.6; cursor: not-allowed; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);" onclick="return false;" title="قريباً">
+                    <i class="fa-brands fa-google-play" style="color: rgba(255,255,255,0.6);"></i>
+                    <div class="store-text">
+                        <span data-lang="android-sub" style="color: rgba(255,255,255,0.6);">قريباً على</span>
+                        <strong data-lang="android-main" style="color: rgba(255,255,255,0.6);">جوجل بلاي</strong>
+                    </div>
+                </a>
+                <a href="#" class="store-btn app-store" style="opacity: 0.6; cursor: not-allowed; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);" onclick="return false;" title="قريباً">
+                    <i class="fa-brands fa-apple" style="color: rgba(255,255,255,0.6);"></i>
+                    <div class="store-text">
+                        <span data-lang="apple-sub" style="color: rgba(255,255,255,0.6);">قريباً على</span>
+                        <strong data-lang="apple-main" style="color: rgba(255,255,255,0.6);">آب ستور</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h2>يقين</h2>
+                <p id="footer-slogan">طريقك نحو السكينة والطمأنينة</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" id="link-privacy">سياسة الخصوصية</a>
+                <a href="#" id="link-faq">الأسئلة الشائعة</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yaqen App. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

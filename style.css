@@ -1,0 +1,1580 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Brand Colors - Gold from screenshot */
+    --primary: #d4af37;
+    /* Used for active elements and accents */
+    --primary-light: #fef08a;
+    /* Brighter gold for hover states */
+    --gold: #d4af37;
+    --gold-light: #fef08a;
+
+    /* Backgrounds - Deep Navy/Midnight Blue from screenshot */
+    --bg-main: #0B132B;
+    /* Deepest blue for outer background */
+    --bg-secondary: #0A1128;
+    /* Slightly darker/varient for contrast */
+    --surface: #121E42;
+    /* Lighter navy for cards/containers */
+
+    /* Text - Bright and readable on dark bg */
+    --text-main: #F8FAFC;
+    /* Off-white */
+    --text-muted: #94A3B8;
+    /* Slate gray for secondary text */
+
+    /* UI Elements */
+    --border: rgba(255, 255, 255, 0.1);
+    /* Subtle bright borders */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    --shadow-gold: 0 10px 25px rgba(212, 175, 55, 0.15);
+    /* Softer gold shadow */
+
+    /* Typography */
+    --font-ar: 'Cairo', sans-serif;
+    --font-en: 'Poppins', sans-serif;
+
+    /* Layout */
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 32px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[lang="en"] {
+    direction: ltr;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-ar);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Elegant Dotted Background Grid */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
+    background-size: 60px 60px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+body[lang="en"] {
+    font-family: var(--font-en);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.navbar {
+    padding: 15px 0;
+    background: rgba(10, 17, 40, 0.75);
+    /* Darker, more glassmorphic */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Softer border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    /* Premium shadow */
+    transition: var(--transition);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    transition: var(--transition);
+}
+
+.mobile-menu-btn:hover {
+    color: var(--gold);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    align-items: center;
+    margin: 0;
+}
+
+.nav-links li a {
+    color: var(--text-main);
+    opacity: 0.8;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links li a:hover {
+    color: var(--gold);
+    opacity: 1;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* Language Dropdown Container */
+.lang-switch {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.lang-btn img {
+    width: 20px;
+    height: 14px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+/* Language Dropdown */
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background: #0d142b;
+    /* Matches dark dropdown background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    width: 220px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+[lang="en"] .lang-dropdown {
+    left: auto;
+    right: 0;
+}
+
+.lang-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-dropdown-header {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: right;
+}
+
+[lang="en"] .lang-dropdown-header {
+    text-align: left;
+}
+
+.lang-dropdown-options {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.lang-option-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.lang-option-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.lang-option-btn.active {
+    background: #112a4f;
+    /* Blue-ish highlight */
+    color: #3b82f6;
+    /* Active text color blue */
+}
+
+.lang-name {
+    flex: 1;
+    text-align: right;
+    padding: 0 10px;
+}
+
+.lang-en-text {
+    font-family: var(--font-en);
+}
+
+[lang="en"] .lang-name {
+    text-align: left;
+}
+
+.lang-icon-wrapper {
+    width: 22px;
+    height: 16px;
+    border-radius: 3px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.lang-flag {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.check-icon {
+    font-size: 1.1rem;
+    color: #3b82f6;
+    /* Blue checkmark */
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.lang-option-btn.active .check-icon {
+    opacity: 1;
+}
+
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ornament {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* CSS Geometric Stars Matching Screenshot */
+.elegant-star {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.elegant-star::before,
+.elegant-star::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--gold);
+}
+
+.elegant-star::after {
+    transform: rotate(45deg);
+}
+
+.orn-tr {
+    top: -120px;
+    right: -120px;
+}
+
+.orn-bl {
+    bottom: -150px;
+    left: -100px;
+}
+
+.orn-ramadan-1 {
+    top: 15%;
+    left: 8%;
+    width: 140px;
+    height: 140px;
+    animation: floatOrn 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+    /* Golden glow */
+}
+
+.orn-ramadan-2 {
+    top: 60%;
+    right: 5%;
+    width: 160px;
+    height: 160px;
+    animation: floatOrn 7s ease-in-out infinite reverse;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+}
+
+@keyframes floatOrn {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+.islamic-pattern-bg {
+    display: none;
+}
+
+/* Removed in elegant theme */
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.hero-text {
+    flex: 1;
+    z-index: 2;
+}
+
+[lang="en"] .hero-text {
+    padding: 0;
+}
+
+.hero-text h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    color: var(--text-main);
+    line-height: 1.3;
+    letter-spacing: -1px;
+}
+
+.hero-text p {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 100%;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    /* Ensure right alignment in RTL */
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold), #fcd34d);
+    /* Gold gradient */
+    color: #000;
+    /* Dark text for contrast on gold */
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.25);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #fef08a, #fbbf24);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 25px rgba(212, 175, 55, 0.4);
+    color: #000;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+}
+
+.btn-secondary:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-4px);
+}
+
+/* Mockup */
+.hero-mockup {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    perspective: 1200px;
+}
+
+[lang="en"] .hero-mockup {
+    justify-content: center;
+}
+
+.iphone-mockup {
+    width: 320px;
+    height: 650px;
+    position: relative;
+    transform: rotate(5deg);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
+}
+
+[lang="en"] .iphone-mockup {
+    transform: rotate(-5deg);
+}
+
+.iphone-mockup:hover {
+    transform: rotate(0) translateY(-15px);
+}
+
+.iphone-mockup:hover .iphone-screen {
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(212, 175, 55, 0.1);
+}
+
+/* Faint Glass Pane Behind the Phone */
+.iphone-mockup::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    bottom: -20px;
+    left: -20px;
+    right: -20px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Very subtle border */
+    border-radius: 65px;
+    /* Offset correctly from the inner 45px radius */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Actual Phone Body */
+.iphone-screen {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Crisper phone border */
+    border-radius: 45px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 0.6s ease;
+}
+
+.app-screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Sections Global */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 70px;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    /* Glow for title underline */
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Features */
+.features {
+    padding: 120px 0;
+    background: var(--surface);
+    position: relative;
+}
+
+.feature-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.feature-row {
+    display: none;
+}
+
+/* Resetting old structure classes */
+.feature-content-box {
+    display: none;
+}
+
+.feature-image-circle {
+    display: none;
+}
+
+.feature-mockup-side {
+    display: none;
+}
+
+/* Since I am just overwriting CSS, I MUST adapt the old HTML classes to fit a clean grid! */
+.features .feature-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-main);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    margin: 0;
+    max-width: none;
+}
+
+.features .feature-row:hover {
+    transform: translateY(-10px);
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-light);
+}
+
+.features .feature-content-box {
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    filter: none;
+}
+
+.features .feature-text {
+    padding: 0;
+    text-align: center;
+}
+
+.features .icon-bubble {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px auto;
+    background: rgba(5, 150, 105, 0.1);
+    color: var(--primary);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border: none;
+    box-shadow: none;
+    transition: var(--transition);
+}
+
+.features .feature-row:hover .icon-bubble {
+    background: var(--primary);
+    color: white;
+    transform: rotate(10deg) scale(1.1);
+}
+
+.features .feature-text h3 {
+    font-size: 1.4rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.features .feature-text p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* Hide the mockups in the feature grid for a cleaner modern look without crowding */
+.features .feature-mockup-side {
+    display: none;
+}
+
+
+/* Prayer Times Layout */
+.prayer-times {
+    padding: 120px 0;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.prayer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.prayer-illustration-top .prayer-top-img {
+    max-width: 280px;
+    width: 100%;
+    opacity: 0.9;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.05));
+    animation: floatIllustration 6s ease-in-out infinite;
+}
+
+@keyframes floatIllustration {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Filter Row */
+.prayer-filters-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.filter-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.03);
+    /* Translucent dark box */
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 14px 28px;
+    gap: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-weight: 600;
+    color: var(--text-main);
+    min-width: 250px;
+    transition: var(--transition);
+}
+
+.filter-box:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.filter-box i {
+    color: var(--gold);
+    font-size: 1.3rem;
+}
+
+.filter-box select {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    outline: none;
+    flex: 1;
+    text-align: right;
+    appearance: none;
+}
+
+[lang="en"] .filter-box select {
+    text-align: left;
+}
+
+.filter-label {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Prayer Cards */
+.prayer-cards-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0 40px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.prayer-cards-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.prayer-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    min-width: max-content;
+    margin: 0 auto;
+}
+
+.prayer-time-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 25px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.prayer-time-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-8px);
+    background: rgba(212, 175, 55, 0.05);
+    /* Subtle gold tint on hover */
+}
+
+.prayer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+[lang="ar"] .prayer-info {
+    align-items: flex-end;
+}
+
+.prayer-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.prayer-time {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.prayer-icon {
+    font-size: 2.5rem;
+    transition: var(--transition);
+    color: var(--gold);
+    opacity: 0.8;
+}
+
+.prayer-time-card:hover .prayer-icon {
+    transform: rotate(15deg) scale(1.1);
+    color: var(--gold-light);
+    opacity: 1;
+}
+
+.icon-fajr {
+    color: #818cf8;
+}
+
+/* Indigo */
+.icon-sunrise {
+    color: #fbbf24;
+}
+
+/* Amber */
+.icon-dhuhr {
+    color: #f59e0b;
+}
+
+.icon-asr {
+    color: #f97316;
+}
+
+.icon-maghrib {
+    color: #f43f5e;
+}
+
+.icon-isha {
+    color: #3b82f6;
+}
+
+/* Blue */
+
+/* Active (Next Prayer) */
+.prayer-time-card.active {
+    background: linear-gradient(135deg, var(--gold), #fcd34d);
+    color: #000;
+    border: none;
+    transform: scale(1.05);
+    box-shadow: var(--shadow-gold);
+    padding: 30px 40px;
+    animation: gentlePulse 3s infinite alternate;
+}
+
+@keyframes gentlePulse {
+    0% {
+        box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+    }
+}
+
+.prayer-time-card.active .prayer-name {
+    color: #000;
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.prayer-time-card.active .prayer-name::before {
+    content: 'الصلاة التالية\A';
+    white-space: pre;
+    font-size: 0.9rem;
+    opacity: 1;
+}
+
+[lang="en"] .prayer-time-card.active .prayer-name::before {
+    content: 'Next Prayer\A';
+}
+
+.prayer-time-card.active .prayer-time {
+    color: #000;
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.prayer-time-card.active .prayer-icon {
+    color: #000;
+    font-size: 3.5rem;
+}
+
+/* Countdown Container */
+.prayer-countdown-container {
+    text-align: center;
+    margin: 20px 0 0 0;
+    padding: 40px 60px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+#countdown-title {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--font-en);
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    /* Dark translucent box */
+    padding: 20px 30px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    min-width: 100px;
+}
+
+.time-box span:first-child {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+}
+
+.time-label {
+    font-size: 0.9rem !important;
+    color: var(--text-muted) !important;
+    margin-top: 10px;
+    font-family: var(--font-ar);
+    font-weight: 600;
+}
+
+[lang="en"] .time-label {
+    font-family: var(--font-en);
+}
+
+.time-colon {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--border);
+    animation: blink 1s infinite alternate;
+}
+
+/* Ramadan Sections */
+.ramadan-mode-section {
+    padding: 120px 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+
+.ramadan-decor {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0.2;
+    animation: rotateDecor 20s linear infinite;
+    filter: grayscale(100%);
+}
+
+.decor-left {
+    top: 15%;
+    left: 10%;
+}
+
+.decor-right {
+    bottom: 15%;
+    right: 10%;
+}
+
+@keyframes rotateDecor {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ramadan-countdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.ramadan-card {
+    background: var(--surface);
+    border: 1px solid var(--gold);
+    border-radius: var(--radius-lg);
+    padding: 50px;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    box-shadow: var(--shadow-md);
+}
+
+.ramadan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-gold);
+}
+
+.ramadan-card-icon {
+    font-size: 60px;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.05));
+}
+
+.ramadan-card h3 {
+    color: var(--text-main);
+    margin-bottom: 35px;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.countdown-timer.gold-style .time-box.gold {
+    background: linear-gradient(135deg, var(--gold-light), #fde047);
+    color: #000;
+    min-width: 100px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
+    border: none;
+}
+
+.countdown-timer.gold-style .time-box.gold span:first-child {
+    font-size: 2.5rem;
+    color: #000;
+}
+
+.countdown-timer.gold-style .time-box.gold .time-label {
+    color: rgba(0, 0, 0, 0.6) !important;
+    font-weight: 700;
+}
+
+.ramadan-status {
+    margin-top: 35px;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.ramadan-footer-icon {
+    margin-top: 60px;
+    max-width: 150px;
+    opacity: 0.8;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 120px 0;
+    background: var(--surface);
+    position: relative;
+}
+
+.faq-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.faq-illustration .faq-img {
+    width: 100%;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.08));
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.faq-item {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+.faq-question {
+    width: 100%;
+    text-align: right;
+    padding: 25px 30px;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.15rem;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+
+[lang="en"] .faq-question {
+    text-align: left;
+}
+
+.faq-question i {
+    color: var(--primary);
+    transition: transform 0.4s ease;
+    font-size: 1.25rem;
+}
+
+.faq-item.active {
+    background: var(--surface);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+}
+
+.faq-item.active .faq-question {
+    color: var(--primary);
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.faq-answer p {
+    padding: 0 30px 30px 30px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.mt-30 {
+    margin-top: 50px;
+}
+
+/* Download Section */
+.download-section {
+    padding: 120px 0;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border);
+}
+
+#download-desc {
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+}
+
+.download-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.store-btn {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    /* Translucent dark box */
+    color: var(--gold);
+    padding: 12px 35px;
+    border-radius: 16px;
+    border: 1px solid var(--gold);
+    transition: var(--transition);
+    gap: 20px;
+}
+
+.store-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+    /* Gold glow */
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.store-btn i {
+    font-size: 35px;
+}
+
+.store-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+[lang="ar"] .store-text {
+    text-align: right;
+}
+
+.store-text span {
+    font-size: 0.75rem;
+    font-family: var(--font-en);
+    opacity: 0.8;
+}
+
+.store-text strong {
+    font-size: 1.3rem;
+    font-family: var(--font-en);
+    font-weight: 600;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(180deg, var(--bg-main) 0%, #050a15 100%);
+    padding: 80px 0 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-brand h2 {
+    color: var(--gold);
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+    font-weight: 800;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    font-weight: 600;
+    transition: var(--transition);
+    font-size: 1.05rem;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 30px;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+/* Animations Tools */
+.animate-up {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.15s;
+}
+
+.delay-2 {
+    animation-delay: 0.30s;
+}
+
+.delay-3 {
+    animation-delay: 0.45s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom Select Styles */
+.custom-select-wrapper {
+    position: relative;
+    flex: 1;
+    cursor: pointer;
+    user-select: none;
+}
+
+.custom-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--text-main);
+}
+
+.custom-options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    margin-top: 10px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.custom-options.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.custom-option {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-muted);
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.custom-option:last-child {
+    border-bottom: none;
+}
+
+.custom-option:hover,
+.custom-option.selected {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold);
+}
+
+.ms-icon {
+    font-size: 1rem !important;
+    transition: transform 0.3s ease;
+}
+
+.custom-select-wrapper.open~.ms-icon {
+    transform: rotate(180deg);
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .faq-container {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-illustration {
+        order: -1;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-text p {
+        max-width: 100%;
+        margin: 0 auto 30px auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .btn-secondary {
+        margin: 15px 0 0 0;
+    }
+
+    .iphone-mockup {
+        width: 280px;
+        height: 580px;
+        transform: rotate(0) !important;
+        margin-top: 40px;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        order: 1;
+        /* Keep menu button between logo and lang switch, or adjust flex */
+    }
+
+    .lang-switch {
+        order: 2;
+    }
+
+    .nav-content {
+        gap: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 17, 40, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 0 20px;
+        gap: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    }
+
+    .nav-links.active {
+        max-height: 300px;
+        padding: 20px;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .header-content {
+        padding: 15px;
+    }
+
+    .ramadan-countdown-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+        width: 100%;
+    }
+}
