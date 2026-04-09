@@ -763,6 +763,8 @@ a {
     gap: 20px;
     flex-wrap: wrap;
     width: 100%;
+    position: relative;
+    z-index: 50; /* Ensure this row stays above the prayer cards */
 }
 
 .filter-box {
@@ -1002,27 +1004,62 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    /* Dark translucent box */
-    padding: 20px 30px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    min-width: 100px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 30px 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    min-width: 130px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.time-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 60%);
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.time-box:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(212, 175, 55, 0.2);
+}
+
+.time-box:hover::before {
+    opacity: 1;
 }
 
 .time-box span:first-child {
-    font-size: 2.8rem;
-    font-weight: 800;
+    font-size: 3.8rem;
+    font-weight: 900;
     color: var(--gold);
     line-height: 1;
+    text-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
+    position: relative;
+    z-index: 2;
 }
 
 .time-label {
-    font-size: 0.9rem !important;
-    color: var(--text-muted) !important;
-    margin-top: 10px;
+    font-size: 1.1rem !important;
+    color: var(--text-main) !important;
+    margin-top: 15px;
     font-family: var(--font-ar);
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
 }
 
 [lang="en"] .time-label {
@@ -1030,10 +1067,12 @@ a {
 }
 
 .time-colon {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--border);
-    animation: blink 1s infinite alternate;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    opacity: 0.7;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    animation: blink 1.5s infinite alternate ease-in-out;
 }
 
 /* Ramadan Sections */
@@ -1422,17 +1461,20 @@ a {
     top: 100%;
     right: 0;
     left: 0;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-md);
-    margin-top: 10px;
-    z-index: 100;
+    background: rgba(10, 17, 40, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    margin-top: 15px;
+    z-index: 999;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: var(--transition);
     overflow: hidden;
+    min-width: max-content;
 }
 
 .custom-options.open {
@@ -1447,6 +1489,7 @@ a {
     color: var(--text-muted);
     transition: var(--transition);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    white-space: nowrap;
 }
 
 .custom-option:last-child {

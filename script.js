@@ -68,7 +68,8 @@ const translations = {
             sa: "المملكة العربية السعودية (مكة)",
             eg: "مصر (القاهرة)",
             ae: "الإمارات (دبي)",
-            uk: "المملكة المتحدة (لندن)"
+            uk: "المملكة المتحدة (لندن)",
+            ps: "فلسطين (القدس)"
         }
     },
     en: {
@@ -139,7 +140,8 @@ const translations = {
             sa: "Saudi Arabia (Makkah)",
             eg: "Egypt (Cairo)",
             ae: "UAE (Dubai)",
-            uk: "United Kingdom (London)"
+            uk: "United Kingdom (London)",
+            ps: "Palestine (Jerusalem)"
         }
     }
 };
@@ -149,7 +151,8 @@ const locationMap = {
     sa: { city: "Makkah", country: "Saudi Arabia" },
     eg: { city: "Cairo", country: "Egypt" },
     ae: { city: "Dubai", country: "United Arab Emirates" },
-    uk: { city: "London", country: "United Kingdom" }
+    uk: { city: "London", country: "United Kingdom" },
+    ps: { city: "Jerusalem", country: "Palestine" }
 };
 
 let currentLang = 'ar';
